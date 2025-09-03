@@ -35,14 +35,16 @@ pipeline {
         stage('Publish Reports') {
             steps {
                 junit 'reports/junit.xml'
-                publishHTML([[
+                publishHTML(target: [
                     reportDir: 'coverage_html',
                     reportFiles: 'index.html',
                     reportName: 'HTML Coverage Report'
-                ]])
+                ])
             }
         }
     }
+
+
 
     post {
         always {
