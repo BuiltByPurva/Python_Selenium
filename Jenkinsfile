@@ -1,14 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        python 'Python3'   // Configure in Jenkins: Manage Jenkins > Global Tool Configuration
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/BuiltByPurva/Python_Selenium.git'
+                git branch: 'main', url: 'https://github.com/BuiltByPurva/Python_Selenium.git'
             }
         }
 
@@ -39,7 +35,6 @@ pipeline {
         stage('Publish Reports') {
             steps {
                 junit 'reports/junit.xml'
-                cobertura coberturaReportFile: 'coverage.xml'
                 publishHTML([[
                     reportDir: 'coverage_html',
                     reportFiles: 'index.html',
